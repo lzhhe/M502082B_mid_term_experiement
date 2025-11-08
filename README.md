@@ -1,46 +1,73 @@
-# M502082B大模型基础与应用 中期作业
-- 刘子赫 25120399
+# M502082B 大模型基础与应用 · 中期作业  
+**姓名：刘子赫**  **学号：25120399**
 
-## 实验环境及配置
-使用pytorch2.1.2+cu121版本，在python3.10上运行
+---
 
-实验在本机上使用3060ti进行调试跑通，在4090服务器上对于超参数进行优化并进行训练
-在使用NVIDIA 4090上运行一轮时间在batchsize为32时约为45秒
-显存消耗约为10-12Gb左右，显卡占用约在50%左右
+## 实验环境与配置
 
-请在clone整个项目执行以下命令即可运行程序
-$ conda create -n transformer python=3.10
-$ conda activate transformer
-$ cd M502082B_mid_term_experiement
-$ pip install -r requirements.txt 
-$ python -m src.main
+- **操作系统与依赖环境**  
+  - Python：`3.10`  
+  - PyTorch：`2.1.2 + CUDA 12.1`
 
-## 代码结构
-项目结构如下
-README.md
-cnn_dailymail (数据集)
-├── 3.0.0
-│ ├── test-00000-of-00001.parquet
-│ ├── train-00000-of-00003.parquet
-│ ├── train-00001-of-00003.parquet
-│ ├── train-00002-of-00003.parquet
-│ └── validation-00000-of-00001.parquet
-requirements.txt (环境列表)
-scripts
-└── run.sh (运行脚本)
-src
-├── attention.py (注意力机制)
-├── best_transformer.pth (生成的权重)
-├── bpe_tokenization.py (tokenizer)
-├── bpe_tokenizer.model (训练的词表模型)
-├── bpe_tokenizer.vocab (词表)
-├── corpus.txt (语料库)
-├── dataset.py (处理数据集)
-├── embeding.py (词嵌入)
-├── encoder_decoder.py (编码解码器)
-├── main.py (主程序)
-├── test_sample_filtered.parquet (过滤好的数据集)
-├── train_sample_filtered.parquet (过滤好的数据集)
-├── transformer_model.py (transformer模型)
-└── validation_sample_filtered.parquet (过滤好的数据集)
+- **硬件配置**  
+  - 本地调试环境：NVIDIA **RTX 3060 Ti**  
+  - 训练优化环境：NVIDIA **RTX 4090**  
+  - **Batch Size = 32** 时单轮训练耗时约 **45 秒**  
+  - 显存占用约 **10–12 GB**，显卡利用率约 **50%**
 
+---
+
+## 快速开始
+
+请确保已克隆完整项目后，在终端中依次执行以下命令：
+
+```bash
+# 创建并激活环境
+conda create -n transformer python=3.10
+conda activate transformer
+
+# 进入项目目录
+cd M502082B_mid_term_experiement
+
+# 安装依赖
+pip install -r requirements.txt 
+
+# 运行主程序
+python -m src.main
+```
+
+
+## 项目结构
+```bash
+M502082B_mid_term_experiement/
+│
+├── README.md                      # 项目说明文件
+├── requirements.txt               # 环境依赖列表
+│
+├── cnn_dailymail/                 # 数据集目录
+│   └── 3.0.0/
+│       ├── train-00000-of-00003.parquet
+│       ├── train-00001-of-00003.parquet
+│       ├── train-00002-of-00003.parquet
+│       ├── validation-00000-of-00001.parquet
+│       └── test-00000-of-00001.parquet
+│
+├── scripts/
+│   └── run.sh                     # 运行脚本
+│
+└── src/                           # 源代码目录
+    ├── attention.py               # 注意力机制实现
+    ├── best_transformer.pth       # 最优模型权重
+    ├── bpe_tokenization.py        # BPE分词器代码
+    ├── bpe_tokenizer.model        # 训练好的分词模型
+    ├── bpe_tokenizer.vocab        # 词表文件
+    ├── corpus.txt                 # 语料库
+    ├── dataset.py                 # 数据加载与处理
+    ├── embeding.py                # 词嵌入层
+    ├── encoder_decoder.py         # 编码器-解码器结构
+    ├── main.py                    # 主程序入口
+    ├── transformer_model.py       # Transformer 模型定义
+    ├── train_sample_filtered.parquet
+    ├── validation_sample_filtered.parquet
+    └── test_sample_filtered.parquet
+```
